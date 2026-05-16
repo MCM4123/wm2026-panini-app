@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Zufalls Witze Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Lustige Zufallswitze von JokeAPI">
+
+  <!-- iOS Web‑App Einstellungen -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Witze">
+  <meta name="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%239C27B0' width='192' height='192'/><text x='50%' y='50%' font-size='100' fill='white' text-anchor='middle' dominant-baseline='middle'>😂</text></svg>">
+
+  <!-- Manifest -->
+  <link rel="manifest" href="jokes-manifest.webmanifest">
+
+  <!-- Android Theme -->
+  <meta name="theme-color" content="#9C27B0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      padding-top: max(20px, env(safe-area-inset-top));
+      padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+
+    .container {
+      max-width: 500px;
+      width: 100%;
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      animation: slideIn 0.5s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      text-align: center;
+      color: #764ba2;
+      margin: 0 0 10px 0;
+      font-size: 28px;
+    }
+
+    .emoji {
+      font-size: 50px;
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .stats {
+      text-align: center;
+      color: #999;
+      font-size: 12px;
+      margin-bottom: 20px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .category-btn {
+      padding: 8px 14px;
+      border: 2px solid #667eea;
+      background: white;
+      color: #667eea;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .category-btn.active {
+      background: #667eea;
+      color: white;
+    }
+
+    .category-btn:active {
+      transform: scale(0.95);
+    }
+
+    .joke-box {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      border-radius: 15px;
+      padding: 25px;
+      margin: 20px 0;
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .joke-text {
+      margin: 0;
+    }
+
+    .punchline {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #764ba2;
+      font-size: 18px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 12px 24px;
+      border: none;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    .share-btn {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      padding: 10px 16px;
+      font-size: 12px;
+    }
+
+    .loading {
+      text-align: center;
+      color: #667eea;
+      font-weight: bold;
+    }
+
+    .error {
+      background: #ffebee;
+      color: #c62828;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 12px;
+      margin-top: 30px;
+    }
+
+    .copy-feedback {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 20px;
+      opacity: 0;
+      animation: popIn 0.3s ease-out forwards;
+      z-index: 1000;
+    }
+
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>😂 Witze Generator</h1>
+  
+  <div class="stats">
+    <p>Witze geladen: <strong id="jokeCount">0</strong></p>
+  </div>
+
+  <div class="controls">
+    <button class="category-btn active" onclick="setCategory('any')">Alle</button>
+    <button class="category-btn" onclick="setCategory('general')">Allgemein</button>
+    <button class="category-btn" onclick="setCategory('programming')">Programmierung</button>
+    <button class="category-btn" onclick="setCategory('knock-knock')">Klopf-Witze</button>
+  </div>
+
+  <div id="jokeBox" class="joke-box">
+    <div class="loading">Witz wird geladen...</div>
+  </div>
+
+  <div class="buttons">
+    <button onclick="getJoke()">🎲 Neuer Witz</button>
+    <button class="share-btn" onclick="shareJoke()">📤 Teilen</button>
+  </div>
+
+  <div id="error"></div>
+</div>
+
+<footer>
+  <p>Powered by <a href="https://jokeapi.dev/" target="_blank" style="color: white; text-decoration: none;">JokeAPI</a></p>
+</footer>
+
+<script>
+  let currentJoke = null;
+  let currentCategory = 'any';
+  let jokeCount = 0;
+
+  function setCategory(category) {
+    currentCategory = category;
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    getJoke();
+  }
+
+  async function getJoke() {
+    const jokeBox = document.getElementById('jokeBox');
+    const errorBox = document.getElementById('error');
+    
+    jokeBox.innerHTML = '<div class="loading">Witz wird geladen...</div>';
+    errorBox.innerHTML = '';
+
+    try {
+      const url = `https://v2.jokeapi.dev/joke/${currentCategory}?lang=de`;
+      const response = await fetch(url);
+      
+      if (!response.ok) {
+        throw new Error('Fehler beim Laden des Witzes');
+      }
+
+      const data = await response.json();
+      
+      if (data.error) {
+        throw new Error('Keine Witze gefunden');
+      }
+
+      currentJoke = data;
+      jokeCount++;
+      document.getElementById('jokeCount').textContent = jokeCount;
+      displayJoke(data);
+
+    } catch (error) {
+      jokeBox.innerHTML = '<div class="loading">Witz konnte nicht geladen werden</div>';
+      errorBox.innerHTML = `<div class="error">⚠️ ${error.message}</div>`;
+      console.error(error);
+    }
+  }
+
+  function displayJoke(joke) {
+    const jokeBox = document.getElementById('jokeBox');
+    
+    if (joke.type === 'single') {
+      jokeBox.innerHTML = `<p class="joke-text">${joke.joke}</p>`;
+    } else if (joke.type === 'twopart') {
+      jokeBox.innerHTML = `
+        <div>
+          <p class="joke-text">${joke.setup}</p>
+          <p class="punchline">${joke.delivery}</p>
+        </div>
+      `;
+    }
+  }
+
+  function shareJoke() {
+    if (!currentJoke) {
+      alert('Kein Witz zum Teilen vorhanden!');
+      return;
+    }
+
+    let jokeText = '';
+    if (currentJoke.type === 'single') {
+      jokeText = currentJoke.joke;
+    } else {
+      jokeText = `${currentJoke.setup}\n\n${currentJoke.delivery}`;
+    }
+
+    if (navigator.share) {
+      navigator.share({
+        title: '😂 Schau dir diesen Witz an!',
+        text: jokeText
+      }).catch(err => console.log('Fehler beim Teilen:', err));
+    } else {
+      // Fallback: Copy to clipboard
+      navigator.clipboard.writeText(jokeText).then(() => {
+        showCopyFeedback('✓ In Zwischenablage kopiert!');
+      }).catch(err => {
+        alert('Fehler beim Kopieren!');
+        console.error(err);
+      });
+    }
+  }
+
+  function showCopyFeedback(message) {
+    const feedback = document.createElement('div');
+    feedback.className = 'copy-feedback';
+    feedback.textContent = message;
+    document.body.appendChild(feedback);
+
+    setTimeout(() => {
+      feedback.remove();
+    }, 2000);
+  }
+
+  // Service Worker
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('jokes-sw.js').catch(console.error);
+    });
+  }
+
+  // Load first joke on page load
+  window.addEventListener('load', getJoke);
+</script>
+
+</body>
+</html>
