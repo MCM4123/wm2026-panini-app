@@ -11,8 +11,6 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="WM 2026">
   <meta name="apple-touch-icon" href="icon-192.png">
-  <meta name="apple-touch-icon" sizes="192x192" href="icon-192.png">
-  <meta name="apple-touch-icon" sizes="512x512" href="icon-512.png">
 
   <!-- Manifest -->
   <link rel="manifest" href="manifest.webmanifest">
@@ -20,7 +18,6 @@
   <!-- Android Theme -->
   <meta name="theme-color" content="#ffeb3b">
 
-  <!-- Panini‑Styles -->
   <style>
     * {
       box-sizing: border-box;
@@ -29,15 +26,13 @@
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
-      overflow-x: hidden;
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background: #f7f7f7;
-      padding-bottom: 80px;
-      padding-top: 60px;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #f5f5f5;
+      padding-top: 70px;
+      padding-bottom: 20px;
     }
 
     header {
@@ -45,142 +40,106 @@
       top: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(135deg, #ffeb3b 0%, #fbc02d 100%);
-      padding: 12px 15px;
+      background: #ffeb3b;
+      padding: 15px;
       text-align: center;
       font-size: 20px;
       font-weight: bold;
-      border-bottom: 3px solid #f9a825;
       z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      padding-top: max(12px, env(safe-area-inset-top));
+      border-bottom: 2px solid #fbc02d;
     }
 
     .searchbox {
       width: 90%;
-      margin: 12px auto;
-      padding: 12px;
+      margin: 15px auto;
+      padding: 10px;
       font-size: 16px;
-      border-radius: 12px;
+      border-radius: 10px;
       border: 2px solid #ff9800;
       display: block;
-      background: white;
     }
 
     .group-header {
-      margin-left: 14px;
+      margin-left: 15px;
       margin-top: 20px;
-      margin-bottom: 10px;
       color: #ff9800;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
     }
 
     .country {
       background: white;
-      margin: 10px 14px;
-      padding: 14px;
+      margin: 12px 15px;
+      padding: 15px;
       border-radius: 12px;
       border: 3px solid #ffcc80;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .country h2 {
-      margin: 0 0 10px 0;
+      margin: 0 0 12px 0;
       font-size: 18px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .sticker-container {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .checkbox {
-      font-size: 20px;
-      padding: 4px 8px;
-      display: inline-flex;
-      align-items: center;
+      font-size: 18px;
+      padding: 6px 10px;
       cursor: pointer;
       background: #f0f0f0;
-      border-radius: 8px;
+      border-radius: 6px;
       user-select: none;
       -webkit-user-select: none;
-      transition: all 0.2s ease;
-    }
-
-    .checkbox:active {
-      transform: scale(0.95);
-    }
-
-    .checkbox.checked {
-      background: #c8e6c9;
     }
 
     .progress {
-      height: 8px;
+      height: 10px;
       background: #ddd;
-      border-radius: 4px;
-      margin-top: 10px;
+      border-radius: 5px;
       overflow: hidden;
+      margin-bottom: 8px;
     }
 
     .progress-bar {
-      height: 8px;
-      background: linear-gradient(90deg, #4caf50 0%, #45a049 100%);
+      height: 10px;
+      background: #4caf50;
       width: 0%;
-      border-radius: 4px;
-      transition: width 0.3s ease;
+      border-radius: 5px;
+      transition: width 0.3s;
     }
 
     .stats {
-      font-size: 12px;
+      font-size: 13px;
       color: #666;
-      margin-top: 6px;
+      font-weight: bold;
     }
 
     footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: white;
-      border-top: 2px solid #ff9800;
-      padding: 10px;
       display: flex;
-      justify-content: space-around;
-      align-items: center;
-      z-index: 99;
-      padding-bottom: max(10px, env(safe-area-inset-bottom));
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+      flex-wrap: wrap;
     }
 
-    .footer-btn {
-      padding: 8px 12px;
-      border: none;
+    button {
+      padding: 10px 15px;
       background: #ffeb3b;
+      border: none;
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
-      font-size: 12px;
-      transition: all 0.2s ease;
+      font-size: 14px;
     }
 
-    .footer-btn:active {
+    button:active {
       background: #fbc02d;
-    }
-
-    #content {
-      padding-top: 12px;
-    }
-
-    @media (max-height: 600px) {
-      body {
-        padding-bottom: 50px;
-      }
     }
   </style>
 </head>
@@ -188,369 +147,312 @@
 <body>
 
 <header>🏆 WM 2026 Panini</header>
-<input class="searchbox" placeholder="Land suchen…">
+<input class="searchbox" placeholder="Land suchen...">
 
 <div id="content">
 
-<!-- ========================= -->
-<!--   GRUPPE A–H (1–16)      -->
-<!-- ========================= -->
+<h1 class="group-header">Gruppe A-H</h1>
 
-<h1 class="group-header">Gruppe A–H</h1>
-
-<!-- ALG – Algerien -->
-<div class="country" id="ALG">
-    <h2>🇩🇿 ALG – Algerien</h2>
-    <div class="sticker-container">
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    </div>
-    <div class="progress"><div class="progress-bar"></div></div>
-    <div class="stats"><span class="checked-count">0</span>/<span class="total-count">6</span> Sticker</div>
+<div class="country">
+  <h2>🇩🇿 Algerien</h2>
+  <div class="sticker-container">
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  </div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0/6 Sticker</div>
 </div>
 
-<!-- ARG – Argentinien -->
-<div class="country" id="ARG">
-    <h2>🇦🇷 ARG – Argentinien</h2>
-    <div class="sticker-container">
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    </div>
-    <div class="progress"><div class="progress-bar"></div></div>
-    <div class="stats"><span class="checked-count">0</span>/<span class="total-count">4</span> Sticker</div>
+<div class="country">
+  <h2>🇦🇷 Argentinien</h2>
+  <div class="sticker-container">
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  </div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0/4 Sticker</div>
 </div>
 
-<!-- AUS – Australien -->
-<div class="country" id="AUS">
-    <h2>🇦🇺 AUS – Australien</h2>
-    <div class="sticker-container">
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    </div>
-    <div class="progress"><div class="progress-bar"></div></div>
-    <div class="stats"><span class="checked-count">0</span>/<span class="total-count">8</span> Sticker</div>
+<div class="country">
+  <h2>🇦🇺 Australien</h2>
+  <div class="sticker-container">
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  </div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0/8 Sticker</div>
 </div>
 
-<!-- AUT – Österreich -->
-<div class="country" id="AUT">
-    <h2>🇦🇹 AUT – Österreich</h2>
-    <div class="sticker-container">
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    </div>
-    <div class="progress"><div class="progress-bar"></div></div>
-    <div class="stats"><span class="checked-count">0</span>/<span class="total-count">4</span> Sticker</div>
+<div class="country">
+  <h2>🇦🇹 Österreich</h2>
+  <div class="sticker-container">
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  </div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0/4 Sticker</div>
 </div>
 
-<!-- BEL – Belgien -->
-<div class="country" id="BEL">
-    <h2>🇧🇪 BEL – Belgien</h2>
-    <div class="sticker-container">
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    </div>
-    <div class="progress"><div class="progress-bar"></div></div>
-    <div class="stats"><span class="checked-count">0</span>/<span class="total-count">3</span> Sticker</div>
+<div class="country">
+  <h2>🇧🇪 Belgien</h2>
+  <div class="sticker-container">
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  </div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0/3 Sticker</div>
 </div>
 
-<!-- BIH – Bosnien & Herzegowina -->
-<div class="country" id="BIH">
-    <h2>🇧🇦 BIH – Bosnien & Herzegowina</h2>
-    <div class="sticker-container">
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    </div>
-    <div class="progress"><div class="progress-bar"></div></div>
-    <div class="stats"><span class="checked-count">0</span>/<span class="total-count">5</span> Sticker</div>
+<div class="country">
+  <h2>🇧🇦 Bosnien & Herzegowina</h2>
+  <div class="sticker-container">
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  </div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0/5 Sticker</div>
 </div>
 
-<!-- BRA – Brasilien -->
-<div class="country" id="BRA">
-    <h2>🇧🇷 BRA – Brasilien</h2>
-    <div class="sticker-container">
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    </div>
-    <div class="progress"><div class="progress-bar"></div></div>
-    <div class="stats"><span class="checked-count">0</span>/<span class="total-count">7</span> Sticker</div>
+<div class="country">
+  <h2>🇧🇷 Brasilien</h2>
+  <div class="sticker-container">
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  </div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0/7 Sticker</div>
 </div>
 
-<!-- CAN – Kanada -->
-<div class="country" id="CAN">
-    <h2>🇨🇦 CAN – Kanada</h2>
-    <div class="sticker-container">
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    </div>
-    <div class="progress"><div class="progress-bar"></div></div>
-    <div class="stats"><span class="checked-count">0</span>/<span class="total-count">4</span> Sticker</div>
+<div class="country">
+  <h2>🇨🇦 Kanada</h2>
+  <div class="sticker-container">
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  </div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0/4 Sticker</div>
 </div>
 
-<!-- ========================= -->
-<!--   GRUPPE Q–Z (33–48)      -->
-<!-- ========================= -->
+<h1 class="group-header">Gruppe Q-Z</h1>
 
-<h1 class="group-header">Gruppe Q–Z</h1>
-
-<!-- QAT – Katar -->
-<div class="country" id="QAT">
-    <h2>🇶🇦 QAT – Katar</h2>
-    <div class="sticker-container">
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    </div>
-    <div class="progress"><div class="progress-bar"></div></div>
-    <div class="stats"><span class="checked-count">0</span>/<span class="total-count">7</span> Sticker</div>
+<div class="country">
+  <h2>🇶🇦 Katar</h2>
+  <div class="sticker-container">
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  </div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0/7 Sticker</div>
 </div>
 
-<!-- RSA – Südafrika -->
-<div class="country" id="RSA">
-    <h2>🇿🇦 RSA – Südafrika</h2>
-    <div class="sticker-container">
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    </div>
-    <div class="progress"><div class="progress-bar"></div></div>
-    <div class="stats"><span class="checked-count">0</span>/<span class="total-count">9</span> Sticker</div>
+<div class="country">
+  <h2>🇿🇦 Südafrika</h2>
+  <div class="sticker-container">
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  </div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0/9 Sticker</div>
 </div>
 
-<!-- SCO – Schottland -->
-<div class="country" id="SCO">
-    <h2>🏴󠁧󠁢󠁳󠁣󠁴󠁿 SCO – Schottland</h2>
-    <div class="sticker-container">
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    </div>
-    <div class="progress"><div class="progress-bar"></div></div>
-    <div class="stats"><span class="checked-count">0</span>/<span class="total-count">6</span> Sticker</div>
+<div class="country">
+  <h2>🏴 Schottland</h2>
+  <div class="sticker-container">
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  </div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0/6 Sticker</div>
 </div>
 
-<!-- SEN – Senegal -->
-<div class="country" id="SEN">
-    <h2>🇸🇳 SEN – Senegal</h2>
-    <div class="sticker-container">
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    </div>
-    <div class="progress"><div class="progress-bar"></div></div>
-    <div class="stats"><span class="checked-count">0</span>/<span class="total-count">9</span> Sticker</div>
+<div class="country">
+  <h2>🇸🇳 Senegal</h2>
+  <div class="sticker-container">
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  </div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0/9 Sticker</div>
 </div>
 
-<!-- TUN – Tunesien -->
-<div class="country" id="TUN">
-    <h2>🇹🇳 TUN – Tunesien</h2>
-    <div class="sticker-container">
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    </div>
-    <div class="progress"><div class="progress-bar"></div></div>
-    <div class="stats"><span class="checked-count">0</span>/<span class="total-count">5</span> Sticker</div>
+<div class="country">
+  <h2>🇹🇳 Tunesien</h2>
+  <div class="sticker-container">
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  </div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0/5 Sticker</div>
 </div>
 
-<!-- URU – Uruguay -->
-<div class="country" id="URU">
-    <h2>🇺🇾 URU – Uruguay</h2>
-    <div class="sticker-container">
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    </div>
-    <div class="progress"><div class="progress-bar"></div></div>
-    <div class="stats"><span class="checked-count">0</span>/<span class="total-count">4</span> Sticker</div>
+<div class="country">
+  <h2>🇺🇾 Uruguay</h2>
+  <div class="sticker-container">
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  </div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0/4 Sticker</div>
 </div>
 
-<!-- USA – USA -->
-<div class="country" id="USA">
-    <h2>🇺🇸 USA – USA</h2>
-    <div class="sticker-container">
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-      <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    </div>
-    <div class="progress"><div class="progress-bar"></div></div>
-    <div class="stats"><span class="checked-count">0</span>/<span class="total-count">5</span> Sticker</div>
+<div class="country">
+  <h2>🇺🇸 USA</h2>
+  <div class="sticker-container">
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  </div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0/5 Sticker</div>
 </div>
 
 </div>
 
 <footer>
-  <button class="footer-btn" onclick="resetAll()">🔄 Zurücksetzen</button>
-  <button class="footer-btn" onclick="exportData()">📥 Export</button>
-  <button class="footer-btn" onclick="importData()">📤 Import</button>
+  <button onclick="resetAll()">🔄 Zurücksetzen</button>
+  <button onclick="exportData()">📥 Export</button>
+  <button onclick="importData()">📤 Import</button>
 </footer>
 
-  <!-- Panini‑Logik -->
-  <script>
-    function toggleBox(el) {
-      const isChecked = el.textContent === "🟩";
-      el.textContent = isChecked ? "⬜" : "🟩";
-      el.classList.toggle("checked");
-      saveProgress();
-      updateProgressBars();
-    }
+<script>
+function toggleBox(el) {
+  el.textContent = el.textContent === "⬜" ? "🟩" : "⬜";
+  updateStats();
+  saveProgress();
+}
 
-    function saveProgress() {
-      const content = document.querySelector("#content").innerHTML;
-      localStorage.setItem("wm2026_panini", content);
-    }
+function updateStats() {
+  document.querySelectorAll(".country").forEach(country => {
+    const checkboxes = country.querySelectorAll(".checkbox");
+    const checked = Array.from(checkboxes).filter(c => c.textContent === "🟩").length;
+    const total = checkboxes.length;
+    
+    country.querySelector(".stats").textContent = checked + "/" + total + " Sticker";
+    country.querySelector(".progress-bar").style.width = (checked / total * 100) + "%";
+  });
+}
 
-    function loadProgress() {
-      const saved = localStorage.getItem("wm2026_panini");
-      if (saved) {
-        document.querySelector("#content").innerHTML = saved;
-        // Re-attach event listeners
-        document.querySelectorAll(".checkbox").forEach(checkbox => {
-          checkbox.onclick = function() { toggleBox(this); };
-          if (checkbox.textContent === "🟩") {
-            checkbox.classList.add("checked");
-          }
-        });
-      }
-    }
+function saveProgress() {
+  localStorage.setItem("wm2026_panini", document.getElementById("content").innerHTML);
+}
 
-    function updateProgressBars() {
-      document.querySelectorAll(".country").forEach(country => {
-        const boxes = country.querySelectorAll(".checkbox");
-        const total = boxes.length;
-        const checked = [...boxes].filter(b => b.textContent === "🟩").length;
-        const bar = country.querySelector(".progress-bar");
-        const checkedSpan = country.querySelector(".checked-count");
-        
-        if (bar) bar.style.width = (checked / total * 100) + "%";
-        if (checkedSpan) checkedSpan.textContent = checked;
-      });
-    }
-
-    // Suchfunktion
-    function setupSearch() {
-      const input = document.querySelector(".searchbox");
-      input.addEventListener("input", () => {
-        const term = input.value.toLowerCase();
-        document.querySelectorAll(".country").forEach(c => {
-          const text = c.innerText.toLowerCase();
-          c.style.display = text.includes(term) ? "block" : "none";
-        });
-        // Auch Group-Header filtern
-        document.querySelectorAll(".group-header").forEach(h => {
-          const nextCountry = h.nextElementSibling;
-          let hasVisibleCountry = false;
-          let el = h.nextElementSibling;
-          while (el && !el.classList.contains("group-header")) {
-            if (el.classList.contains("country") && el.style.display !== "none") {
-              hasVisibleCountry = true;
-            }
-            el = el.nextElementSibling;
-          }
-          h.style.display = hasVisibleCountry ? "block" : "none";
-        });
-      });
-    }
-
-    function resetAll() {
-      if (confirm("Willst du wirklich alles zurücksetzen?")) {
-        localStorage.removeItem("wm2026_panini");
-        location.reload();
-      }
-    }
-
-    function exportData() {
-      const data = localStorage.getItem("wm2026_panini");
-      const dataStr = data ? btoa(data) : "";
-      const dataUri = "data:text/plain;charset=utf-8,"+ encodeURIComponent(dataStr);
-      const exportName = "panini_wm2026_" + new Date().getTime() + ".txt";
-      const linkElement = document.createElement("a");
-      linkElement.setAttribute("href", dataUri);
-      linkElement.setAttribute("download", exportName);
-      linkElement.click();
-    }
-
-    function importData() {
-      const input = document.createElement("input");
-      input.type = "file";
-      input.accept = ".txt";
-      input.onchange = e => {
-        const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.onload = event => {
-          try {
-            const decoded = atob(event.target.result);
-            localStorage.setItem("wm2026_panini", decoded);
-            location.reload();
-          } catch (err) {
-            alert("Fehler beim Importieren der Datei!");
-          }
-        };
-        reader.readAsText(file);
-      };
-      input.click();
-    }
-
-    // Service Worker
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js').catch(console.error);
-      });
-    }
-
-    window.addEventListener('load', function() {
-      loadProgress();
-      setupSearch();
-      updateProgressBars();
+function loadProgress() {
+  const saved = localStorage.getItem("wm2026_panini");
+  if (saved) {
+    document.getElementById("content").innerHTML = saved;
+    document.querySelectorAll(".checkbox").forEach(cb => {
+      cb.onclick = function() { toggleBox(this); };
     });
-  </script>
+    updateStats();
+  }
+}
+
+function resetAll() {
+  if (confirm("Wirklich alles zurücksetzen?")) {
+    localStorage.removeItem("wm2026_panini");
+    location.reload();
+  }
+}
+
+function exportData() {
+  const data = btoa(document.getElementById("content").innerHTML);
+  const link = document.createElement("a");
+  link.href = "data:text/plain," + encodeURIComponent(data);
+  link.download = "panini_" + Date.now() + ".txt";
+  link.click();
+}
+
+function importData() {
+  const input = document.createElement("input");
+  input.type = "file";
+  input.onchange = e => {
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try {
+        const data = atob(ev.target.result);
+        document.getElementById("content").innerHTML = data;
+        document.querySelectorAll(".checkbox").forEach(cb => {
+          cb.onclick = function() { toggleBox(this); };
+        });
+        updateStats();
+        saveProgress();
+      } catch(e) {
+        alert("Fehler beim Importieren!");
+      }
+    };
+    reader.readAsText(e.target.files[0]);
+  };
+  input.click();
+}
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(console.error);
+}
+
+window.addEventListener('load', loadProgress);
+
+document.querySelector(".searchbox").addEventListener("input", (e) => {
+  const term = e.target.value.toLowerCase();
+  document.querySelectorAll(".country").forEach(c => {
+    c.style.display = c.textContent.toLowerCase().includes(term) ? "block" : "none";
+  });
+});
+</script>
+
 </body>
 </html>
