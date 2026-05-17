@@ -200,48 +200,6 @@
     button:active {
       transform: scale(0.98);
     }
-
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.6);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .modal.show {
-      display: flex;
-    }
-
-    .modal-content {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-      max-width: 300px;
-      width: 100%;
-    }
-
-    .modal-content input {
-      width: 100%;
-      padding: 12px;
-      margin: 15px 0;
-      border: 2px solid #ff9800;
-      border-radius: 6px;
-      font-size: 16px;
-      font-weight: bold;
-    }
-
-    .modal-content button {
-      width: 48%;
-      margin: 5px;
-    }
   </style>
 </head>
 
@@ -252,10 +210,10 @@
 
 <div id="content">
 
-<h1 class="group-header">Gruppe A-H</h1>
+<h1 class="group-header">Gruppe A</h1>
 
 <div class="country">
-  <h2>🇩🇿 Algerien</h2>
+  <h2>🇲🇦 Marokko</h2>
   <div class="add-sticker">
     <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
     <button onclick="addSticker(this)">+ Hinzufügen</button>
@@ -277,7 +235,215 @@
 </div>
 
 <div class="country">
-  <h2>🇦🇺 Australien</h2>
+  <h2>🇵🇱 Polen</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<div class="country">
+  <h2>🇫🇷 Frankreich</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<h1 class="group-header">Gruppe B</h1>
+
+<div class="country">
+  <h2>🇪🇸 Spanien</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<div class="country">
+  <h2>🇩🇪 Deutschland</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<div class="country">
+  <h2>🇳🇱 Niederlande</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<div class="country">
+  <h2>🇨🇭 Schweiz</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<h1 class="group-header">Gruppe C</h1>
+
+<div class="country">
+  <h2>🇬🇧 England</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<div class="country">
+  <h2>🇲🇽 Mexiko</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<div class="country">
+  <h2>🇪🇨 Ecuador</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<div class="country">
+  <h2>🇮🇹 Italien</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<h1 class="group-header">Gruppe D</h1>
+
+<div class="country">
+  <h2>🇧🇪 Belgien</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<div class="country">
+  <h2>🇨🇦 Kanada</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<div class="country">
+  <h2>🇸🇪 Schweden</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<div class="country">
+  <h2>🇦🇿 Aserbaidschan</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<h1 class="group-header">Gruppe E</h1>
+
+<div class="country">
+  <h2>🇧🇷 Brasilien</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<div class="country">
+  <h2>🇫🇮 Finnland</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<div class="country">
+  <h2>🇵🇹 Portugal</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<div class="country">
+  <h2>🇷🇴 Rumänien</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<h1 class="group-header">Gruppe F</h1>
+
+<div class="country">
+  <h2>🇧🇪 Belgien</h2>
   <div class="add-sticker">
     <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
     <button onclick="addSticker(this)">+ Hinzufügen</button>
@@ -299,53 +465,7 @@
 </div>
 
 <div class="country">
-  <h2>🇧🇪 Belgien</h2>
-  <div class="add-sticker">
-    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
-    <button onclick="addSticker(this)">+ Hinzufügen</button>
-  </div>
-  <div class="sticker-list"></div>
-  <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0 Sticker</div>
-</div>
-
-<div class="country">
-  <h2>🇧🇦 Bosnien & Herzegowina</h2>
-  <div class="add-sticker">
-    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
-    <button onclick="addSticker(this)">+ Hinzufügen</button>
-  </div>
-  <div class="sticker-list"></div>
-  <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0 Sticker</div>
-</div>
-
-<div class="country">
-  <h2>🇧🇷 Brasilien</h2>
-  <div class="add-sticker">
-    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
-    <button onclick="addSticker(this)">+ Hinzufügen</button>
-  </div>
-  <div class="sticker-list"></div>
-  <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0 Sticker</div>
-</div>
-
-<div class="country">
-  <h2>🇨🇦 Kanada</h2>
-  <div class="add-sticker">
-    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
-    <button onclick="addSticker(this)">+ Hinzufügen</button>
-  </div>
-  <div class="sticker-list"></div>
-  <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0 Sticker</div>
-</div>
-
-<h1 class="group-header">Gruppe Q-Z</h1>
-
-<div class="country">
-  <h2>🇶🇦 Katar</h2>
+  <h2>🇯🇵 Japan</h2>
   <div class="add-sticker">
     <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
     <button onclick="addSticker(this)">+ Hinzufügen</button>
@@ -366,52 +486,89 @@
   <div class="stats">0 Sticker</div>
 </div>
 
-<div class="country">
-  <h2>🏴 Schottland</h2>
-  <div class="add-sticker">
-    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
-    <button onclick="addSticker(this)">+ Hinzufügen</button>
-  </div>
-  <div class="sticker-list"></div>
-  <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0 Sticker</div>
-</div>
-
-<div class="country">
-  <h2>🇸🇳 Senegal</h2>
-  <div class="add-sticker">
-    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
-    <button onclick="addSticker(this)">+ Hinzufügen</button>
-  </div>
-  <div class="sticker-list"></div>
-  <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0 Sticker</div>
-</div>
-
-<div class="country">
-  <h2>🇹🇳 Tunesien</h2>
-  <div class="add-sticker">
-    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
-    <button onclick="addSticker(this)">+ Hinzufügen</button>
-  </div>
-  <div class="sticker-list"></div>
-  <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0 Sticker</div>
-</div>
-
-<div class="country">
-  <h2>🇺🇾 Uruguay</h2>
-  <div class="add-sticker">
-    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
-    <button onclick="addSticker(this)">+ Hinzufügen</button>
-  </div>
-  <div class="sticker-list"></div>
-  <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0 Sticker</div>
-</div>
+<h1 class="group-header">Gruppe G</h1>
 
 <div class="country">
   <h2>🇺🇸 USA</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<div class="country">
+  <h2>🇺🇷 Uruguay</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<div class="country">
+  <h2>🇬🇷 Griechenland</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<div class="country">
+  <h2>🇸🇰 Slowakei</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<h1 class="group-header">Gruppe H</h1>
+
+<div class="country">
+  <h2>🇲🇽 Mexiko</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<div class="country">
+  <h2>🇲🇦 Marokko</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<div class="country">
+  <h2>🇪🇬 Ägypten</h2>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
+  </div>
+  <div class="sticker-list"></div>
+  <div class="progress"><div class="progress-bar"></div></div>
+  <div class="stats">0 Sticker</div>
+</div>
+
+<div class="country">
+  <h2>🇳🇿 Neuseeland</h2>
   <div class="add-sticker">
     <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
     <button onclick="addSticker(this)">+ Hinzufügen</button>
