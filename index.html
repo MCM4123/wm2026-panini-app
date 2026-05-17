@@ -40,19 +40,20 @@
       top: 0;
       left: 0;
       right: 0;
-      background: #ffeb3b;
+      background: linear-gradient(135deg, #ffeb3b, #fbc02d);
       padding: 15px;
       text-align: center;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: bold;
       z-index: 100;
-      border-bottom: 2px solid #fbc02d;
+      border-bottom: 3px solid #ff9800;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
     .searchbox {
       width: 90%;
       margin: 15px auto;
-      padding: 10px;
+      padding: 12px;
       font-size: 16px;
       border-radius: 10px;
       border: 2px solid #ff9800;
@@ -61,10 +62,13 @@
 
     .group-header {
       margin-left: 15px;
-      margin-top: 20px;
+      margin-top: 25px;
+      margin-bottom: 15px;
       color: #ff9800;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: bold;
+      border-left: 4px solid #ff9800;
+      padding-left: 10px;
     }
 
     .country {
@@ -73,49 +77,102 @@
       padding: 15px;
       border-radius: 12px;
       border: 3px solid #ffcc80;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     .country h2 {
-      margin: 0 0 12px 0;
+      margin: 0 0 8px 0;
       font-size: 18px;
+      color: #333;
     }
 
-    .sticker-container {
+    .sticker-list {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 12px;
+      margin-bottom: 15px;
+      min-height: 40px;
+      align-items: center;
     }
 
-    .checkbox {
-      font-size: 18px;
+    .sticker-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: #fff9c4;
       padding: 6px 10px;
-      cursor: pointer;
-      background: #f0f0f0;
       border-radius: 6px;
-      user-select: none;
-      -webkit-user-select: none;
+      cursor: pointer;
+      border: 2px solid #fbc02d;
+      transition: all 0.2s;
+      font-weight: bold;
+    }
+
+    .sticker-item:active {
+      transform: scale(0.95);
+    }
+
+    .sticker-item.collected {
+      background: #c8e6c9;
+      border-color: #4caf50;
+    }
+
+    .sticker-checkbox {
+      font-size: 20px;
+      width: 20px;
+      text-align: center;
+    }
+
+    .sticker-number {
+      color: #333;
+      font-size: 14px;
+    }
+
+    .add-sticker {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      align-items: center;
+    }
+
+    .add-sticker input {
+      flex: 1;
+      padding: 10px;
+      border: 2px solid #ff9800;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .add-sticker button {
+      padding: 10px 15px;
+      background: #ff9800;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      color: white;
+      font-size: 14px;
     }
 
     .progress {
-      height: 10px;
+      height: 12px;
       background: #ddd;
-      border-radius: 5px;
+      border-radius: 6px;
       overflow: hidden;
       margin-bottom: 8px;
     }
 
     .progress-bar {
-      height: 10px;
-      background: #4caf50;
+      height: 12px;
+      background: linear-gradient(90deg, #4caf50, #45a049);
       width: 0%;
-      border-radius: 5px;
+      border-radius: 6px;
       transition: width 0.3s;
     }
 
     .stats {
-      font-size: 13px;
+      font-size: 14px;
       color: #666;
       font-weight: bold;
     }
@@ -124,22 +181,66 @@
       display: flex;
       gap: 10px;
       justify-content: center;
-      margin-top: 20px;
+      margin-top: 30px;
       flex-wrap: wrap;
+      padding: 0 15px;
     }
 
     button {
-      padding: 10px 15px;
-      background: #ffeb3b;
+      padding: 12px 18px;
+      background: linear-gradient(135deg, #ffeb3b, #fbc02d);
       border: none;
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
       font-size: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
     button:active {
-      background: #fbc02d;
+      transform: scale(0.98);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 300px;
+      width: 100%;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 12px;
+      margin: 15px 0;
+      border: 2px solid #ff9800;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .modal-content button {
+      width: 48%;
+      margin: 5px;
     }
   </style>
 </head>
@@ -155,210 +256,169 @@
 
 <div class="country">
   <h2>🇩🇿 Algerien</h2>
-  <div class="sticker-container">
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
   </div>
+  <div class="sticker-list"></div>
   <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0/6 Sticker</div>
+  <div class="stats">0 Sticker</div>
 </div>
 
 <div class="country">
   <h2>🇦🇷 Argentinien</h2>
-  <div class="sticker-container">
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
   </div>
+  <div class="sticker-list"></div>
   <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0/4 Sticker</div>
+  <div class="stats">0 Sticker</div>
 </div>
 
 <div class="country">
   <h2>🇦🇺 Australien</h2>
-  <div class="sticker-container">
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
   </div>
+  <div class="sticker-list"></div>
   <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0/8 Sticker</div>
+  <div class="stats">0 Sticker</div>
 </div>
 
 <div class="country">
   <h2>🇦🇹 Österreich</h2>
-  <div class="sticker-container">
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
   </div>
+  <div class="sticker-list"></div>
   <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0/4 Sticker</div>
+  <div class="stats">0 Sticker</div>
 </div>
 
 <div class="country">
   <h2>🇧🇪 Belgien</h2>
-  <div class="sticker-container">
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
   </div>
+  <div class="sticker-list"></div>
   <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0/3 Sticker</div>
+  <div class="stats">0 Sticker</div>
 </div>
 
 <div class="country">
   <h2>🇧🇦 Bosnien & Herzegowina</h2>
-  <div class="sticker-container">
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
   </div>
+  <div class="sticker-list"></div>
   <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0/5 Sticker</div>
+  <div class="stats">0 Sticker</div>
 </div>
 
 <div class="country">
   <h2>🇧🇷 Brasilien</h2>
-  <div class="sticker-container">
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
   </div>
+  <div class="sticker-list"></div>
   <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0/7 Sticker</div>
+  <div class="stats">0 Sticker</div>
 </div>
 
 <div class="country">
   <h2>🇨🇦 Kanada</h2>
-  <div class="sticker-container">
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
   </div>
+  <div class="sticker-list"></div>
   <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0/4 Sticker</div>
+  <div class="stats">0 Sticker</div>
 </div>
 
 <h1 class="group-header">Gruppe Q-Z</h1>
 
 <div class="country">
   <h2>🇶🇦 Katar</h2>
-  <div class="sticker-container">
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
   </div>
+  <div class="sticker-list"></div>
   <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0/7 Sticker</div>
+  <div class="stats">0 Sticker</div>
 </div>
 
 <div class="country">
   <h2>🇿🇦 Südafrika</h2>
-  <div class="sticker-container">
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
   </div>
+  <div class="sticker-list"></div>
   <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0/9 Sticker</div>
+  <div class="stats">0 Sticker</div>
 </div>
 
 <div class="country">
   <h2>🏴 Schottland</h2>
-  <div class="sticker-container">
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
   </div>
+  <div class="sticker-list"></div>
   <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0/6 Sticker</div>
+  <div class="stats">0 Sticker</div>
 </div>
 
 <div class="country">
   <h2>🇸🇳 Senegal</h2>
-  <div class="sticker-container">
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
   </div>
+  <div class="sticker-list"></div>
   <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0/9 Sticker</div>
+  <div class="stats">0 Sticker</div>
 </div>
 
 <div class="country">
   <h2>🇹🇳 Tunesien</h2>
-  <div class="sticker-container">
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
   </div>
+  <div class="sticker-list"></div>
   <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0/5 Sticker</div>
+  <div class="stats">0 Sticker</div>
 </div>
 
 <div class="country">
   <h2>🇺🇾 Uruguay</h2>
-  <div class="sticker-container">
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
   </div>
+  <div class="sticker-list"></div>
   <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0/4 Sticker</div>
+  <div class="stats">0 Sticker</div>
 </div>
 
 <div class="country">
   <h2>🇺🇸 USA</h2>
-  <div class="sticker-container">
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
-    <span class="checkbox" onclick="toggleBox(this)">⬜</span>
+  <div class="add-sticker">
+    <input type="number" placeholder="Nummer eingeben" class="new-sticker-input" min="1">
+    <button onclick="addSticker(this)">+ Hinzufügen</button>
   </div>
+  <div class="sticker-list"></div>
   <div class="progress"><div class="progress-bar"></div></div>
-  <div class="stats">0/5 Sticker</div>
+  <div class="stats">0 Sticker</div>
 </div>
 
 </div>
@@ -370,47 +430,119 @@
 </footer>
 
 <script>
-function toggleBox(el) {
-  el.textContent = el.textContent === "⬜" ? "🟩" : "⬜";
-  updateStats();
+let stickers = {};
+
+function addSticker(btn) {
+  const input = btn.previousElementSibling;
+  const num = input.value.trim();
+  
+  if (!num || num < 1) {
+    alert("Bitte gib eine gültige Nummer ein!");
+    return;
+  }
+  
+  const country = btn.closest(".country");
+  const countryName = country.querySelector("h2").textContent;
+  
+  if (!stickers[countryName]) stickers[countryName] = [];
+  
+  if (stickers[countryName].includes(parseInt(num))) {
+    alert("Diese Nummer existiert bereits!");
+    return;
+  }
+  
+  stickers[countryName].push(parseInt(num));
+  stickers[countryName].sort((a, b) => a - b);
+  
+  input.value = "";
+  updateDisplay();
   saveProgress();
 }
 
-function updateStats() {
-  document.querySelectorAll(".country").forEach(country => {
-    const checkboxes = country.querySelectorAll(".checkbox");
-    const checked = Array.from(checkboxes).filter(c => c.textContent === "🟩").length;
-    const total = checkboxes.length;
+function toggleSticker(btn) {
+  btn.classList.toggle("collected");
+  updateDisplay();
+  saveProgress();
+}
+
+function removeSticker(btn) {
+  if (confirm("Sticker wirklich löschen?")) {
+    const item = btn.closest(".sticker-item");
+    const num = parseInt(item.dataset.num);
+    const country = btn.closest(".country");
+    const countryName = country.querySelector("h2").textContent;
     
-    country.querySelector(".stats").textContent = checked + "/" + total + " Sticker";
-    country.querySelector(".progress-bar").style.width = (checked / total * 100) + "%";
+    stickers[countryName] = stickers[countryName].filter(n => n !== num);
+    updateDisplay();
+    saveProgress();
+  }
+}
+
+function updateDisplay() {
+  document.querySelectorAll(".country").forEach(country => {
+    const countryName = country.querySelector("h2").textContent;
+    const list = country.querySelector(".sticker-list");
+    const stats = country.querySelector(".stats");
+    const progressBar = country.querySelector(".progress-bar");
+    
+    list.innerHTML = "";
+    
+    if (stickers[countryName]) {
+      let collected = 0;
+      stickers[countryName].forEach(num => {
+        const item = document.createElement("div");
+        item.className = "sticker-item";
+        item.dataset.num = num;
+        item.innerHTML = `
+          <span class="sticker-checkbox">⬜</span>
+          <span class="sticker-number">#${num}</span>
+          <button onclick="removeSticker(this)" style="background: #ff6b6b; padding: 2px 6px; border: none; border-radius: 3px; color: white; cursor: pointer; font-size: 12px;">×</button>
+        `;
+        item.onclick = (e) => {
+          if (e.target.tagName !== "BUTTON") toggleSticker(item);
+        };
+        list.appendChild(item);
+      });
+      
+      const collectedItems = list.querySelectorAll(".sticker-item.collected");
+      collected = collectedItems.length;
+      const total = stickers[countryName].length;
+      
+      stats.textContent = `${collected}/${total} Sticker`;
+      progressBar.style.width = (collected / total * 100) + "%";
+    } else {
+      stats.textContent = "0 Sticker";
+      progressBar.style.width = "0%";
+    }
   });
 }
 
 function saveProgress() {
-  localStorage.setItem("wm2026_panini", document.getElementById("content").innerHTML);
+  localStorage.setItem("wm2026_panini", JSON.stringify(stickers));
 }
 
 function loadProgress() {
   const saved = localStorage.getItem("wm2026_panini");
   if (saved) {
-    document.getElementById("content").innerHTML = saved;
-    document.querySelectorAll(".checkbox").forEach(cb => {
-      cb.onclick = function() { toggleBox(this); };
-    });
-    updateStats();
+    try {
+      stickers = JSON.parse(saved);
+      updateDisplay();
+    } catch(e) {
+      console.error("Fehler beim Laden:", e);
+    }
   }
 }
 
 function resetAll() {
   if (confirm("Wirklich alles zurücksetzen?")) {
+    stickers = {};
     localStorage.removeItem("wm2026_panini");
-    location.reload();
+    updateDisplay();
   }
 }
 
 function exportData() {
-  const data = btoa(document.getElementById("content").innerHTML);
+  const data = btoa(JSON.stringify(stickers));
   const link = document.createElement("a");
   link.href = "data:text/plain," + encodeURIComponent(data);
   link.download = "panini_" + Date.now() + ".txt";
@@ -424,12 +556,8 @@ function importData() {
     const reader = new FileReader();
     reader.onload = ev => {
       try {
-        const data = atob(ev.target.result);
-        document.getElementById("content").innerHTML = data;
-        document.querySelectorAll(".checkbox").forEach(cb => {
-          cb.onclick = function() { toggleBox(this); };
-        });
-        updateStats();
+        stickers = JSON.parse(atob(ev.target.result));
+        updateDisplay();
         saveProgress();
       } catch(e) {
         alert("Fehler beim Importieren!");
