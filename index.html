@@ -802,6 +802,12 @@ function addSticker(btn) {
 
 function toggleSticker(btn) {
   btn.classList.toggle("collected");
+  const checkbox = btn.querySelector(".sticker-checkbox");
+  if (btn.classList.contains("collected")) {
+    checkbox.textContent = "✅";
+  } else {
+    checkbox.textContent = "⬜";
+  }
   updateDisplay();
   saveProgress();
 }
@@ -883,23 +889,37 @@ function resetAll() {
 }
 
 function exportData() {
-  const data = btoa(JSON.stringify(stickers));
+  const data = JSON.stringify(stickers, null, 2);
+  const blob = new Blob([data], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
-  link.href = "data:text/plain," + encodeURIComponent(data);
-  link.download = "panini_" + Date.now() + ".txt";
+  link.href = url;
+  link.download = "panini_" + new Date().toISOString().slice(0,10) + ".json";
+  document.body.appendChild(link);
   link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
 }
 
 function importData() {
   const input = document.createElement("input");
   input.type = "file";
+  input.accept = ".json,.txt";
   input.onchange = e => {
     const reader = new FileReader();
     reader.onload = ev => {
       try {
-        stickers = JSON.parse(atob(ev.target.result));
+        let data = ev.target.result;
+        // Versuche erst direkt JSON
+        try {
+          stickers = JSON.parse(data);
+        } catch {
+          // Falls base64 kodiert, dekodiere es
+          stickers = JSON.parse(atob(data));
+        }
         updateDisplay();
         saveProgress();
+        alert("Daten erfolgreich importiert!");
       } catch(e) {
         alert("Fehler beim Importieren!");
       }
